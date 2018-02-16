@@ -4,5 +4,27 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//Database
+
+const todosList = [
+  {
+    title: "Groceris",
+    complete: false
+  },
+  {
+    title: "Walk Dog",
+    complete: false
+  },
+  {
+    title: "Homework",
+    complete: false
+  }
+];
+
+
+
+ReactDOM.render(
+
+<App todosList={todosList} />,
+ document.getElementById('root'));
 registerServiceWorker();

@@ -1,89 +1,46 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import NavHeader from './components/NavHeader';
+import ListTodos from './components/ListTodos';
+import AddTodo from './components/AddTodo';
 import './App.css';
 
-//array with objects for list
-const todosList = [
-  {
-    title: 'Groceris',
-    complete: true
-  },
-  {
-    title: 'Walk Dog',
-    complete: true
-  },
-  {
-    title: 'Homework',
-    complete: true
-  },
-];
-
-//Component form:
-
-
-//Component List
-class ListTasks extends Component {
+//Parent Component!
+class App extends Component {
   constructor(props) {
     super(props);
-  }
 
-  render() {
-  const { title } = this.props.todosList;
-
-  return (
-      <div>
-        <li> {this.title} </li>
-      </div>
-    );
-  }
-}
-
-//Component todo render
-class SingleTodo extends Component {
-  constructor() {
-    super();
     this.state = {
-      task: ""
+      todosList: props.todosList
     };
   }
 
-  eventHandler = event => {
+  //function to change state of checkbox
+  // checkDone = () => {
+  //   this.setState({
+  //     todosList: todosList.complete === true
+  //   })
+  // }
+
+
+  // Function should be in the parent
+  pushTodo = (text) => {
+    let newTodoTemp = {
+      title: text,
+      complete: false
+    }
     this.setState({
-      task: event.target.value
-    });
-  };
+      todosList: this.state.todosList.concat(newTodoTemp)
+      });
+    };
 
   render() {
     return (
-        <div class="checkbox addTask">
-          <label><input type="text" onKeyUp={this.eventHandler} placeholder="Type your task here:" />{this.state.task}</label>
-        </div>
+      <div className="App">
+        <NavHeader />
+        <AddTodo pushTodo={this.pushTodo} />
+        <ListTodos todosList={this.state.todosList} />
+      </div>
     );
-  }
-}
-
-class App extends Component {
-  render() {
-    //Dealing with Lists
-    let tasksMaped = todosList.map(task => {
-      return <ListTasks
-              title={task} />
-      })
-
-    return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">To Do List</h1>
-          </header>
-
-          <SingleTodo />
-          <div>{tasksMaped}</div>
-          
-
-        </div>
-
-    )
   }
 }
 
