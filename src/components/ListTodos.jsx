@@ -3,23 +3,23 @@ import SingleTodo from "./SingleTodo";
 
 //Component List
 export default class ListTodos extends Component {
-   constructor(props){
-    super(props);
-   }
 
     render(){
       const todosList = this.props.todosList;
-      // console.log(todosList);
       let listJSX = todosList.map((todo, i) => {
         // return <li>{todo.title}</li>
-        return <SingleTodo todo={todo} />
+        return <SingleTodo todo={todo}  
+        markDone={this.props.markDone} />;
 
       })
 
-    return (
-      <ul>
-        {listJSX}
-      </ul>
-    );
+    return <div>
+        <ul>{listJSX}</ul>
+        <button onClick={() => {
+            this.props.clearTodoFunc();
+          }}>
+          Clear Tasks
+        </button>
+      </div>;
   }
 }

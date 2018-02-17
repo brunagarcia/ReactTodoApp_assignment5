@@ -18,8 +18,6 @@ export default class AddTodo extends Component{
 
   render(){
 
-    console.log(this.state.newTodo);
-
     return (
       <div>
         <input type="text" 

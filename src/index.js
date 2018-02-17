@@ -8,23 +8,28 @@ import registerServiceWorker from './registerServiceWorker';
 
 const todosList = [
   {
-    title: "Groceris",
-    complete: false
+    title: "Groceries",
+    complete: false,
+    key: 1
   },
   {
     title: "Walk Dog",
-    complete: false
+    complete: false,
+    key: 2
   },
   {
     title: "Homework",
-    complete: false
+    complete: false,
+    key: 3
   }
 ];
 
 
+const doneList = []
+
 
 ReactDOM.render(
-
-<App todosList={todosList} />,
- document.getElementById('root'));
+  <App todosList={todosList} doneList={doneList} />,
+  document.getElementById("root")
+);
 registerServiceWorker();

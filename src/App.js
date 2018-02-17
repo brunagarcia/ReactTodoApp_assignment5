@@ -10,35 +10,64 @@ class App extends Component {
     super(props);
 
     this.state = {
+      doneList: props.doneList,
       todosList: props.todosList
     };
   }
 
-  //function to change state of checkbox
-  // checkDone = () => {
-  //   this.setState({
-  //     todosList: todosList.complete === true
-  //   })
-  // }
-
-
   // Function should be in the parent
-  pushTodo = (text) => {
+  pushTodo = text => {
     let newTodoTemp = {
       title: text,
-      complete: false
-    }
+      complete: false,
+      key: new Date().getTime()
+    };
     this.setState({
       todosList: this.state.todosList.concat(newTodoTemp)
-      });
-    };
+    });
+  };
 
+  markDone = key => {
+    this.state.todosList.forEach((todo)=>{
+      if (todo.key === key){
+        todo.complete = !todo.complete
+      }
+    })
+    this.setState({
+      todosList: this.state.todosList
+    })
+  }
+
+      //   this.setState({
+      //     doneList: this.state.doneList.concat(todo),
+
+      //   })
+      // } 
+
+
+
+  // Function to clean the todo list. 
+  //   check if the complete state are true, if yes, when click the button change to false.
+  clearTodoFunc = () => {
+    let result = this.state.todosList.filter(todo => todo.complete === true);
+    let rest = this.state.todosList.filter(todo => todo.complete === false);
+    this.setState({ 
+      doneList: this.state.doneList.concat(result),
+      todosList: rest
+    });
+     
+  }
+
+
+  
   render() {
     return (
       <div className="App">
         <NavHeader />
         <AddTodo pushTodo={this.pushTodo} />
-        <ListTodos todosList={this.state.todosList} />
+        <ListTodos todosList={this.state.todosList} 
+          clearTodoFunc={this.clearTodoFunc} 
+          markDone={this.markDone}/>
       </div>
     );
   }
