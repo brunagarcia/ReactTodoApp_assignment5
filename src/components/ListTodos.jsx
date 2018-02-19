@@ -13,13 +13,15 @@ export default class ListTodos extends Component {
 
       })
 
-    return <div>
-        <ul>{listJSX}</ul>
-        <button onClick={() => {
-            this.props.clearTodoFunc();
-          }}>
-          Clear Tasks
-        </button>
-      </div>;
+    return (
+        <div className="container content">
+            <ul className="list">{listJSX}</ul>
+            <button className="btn btn-danger" onClick={() => {
+                this.props.clearTodoFunc();
+              }}>
+              Clear Tasks
+            </button>
+          </div>
+    )
   }
 }

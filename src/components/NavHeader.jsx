@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class NavHeader extends Component{    
   render(){
   return (
-          <header className="App-header">
+          <header className="jumbotron">
             <h1 className="App-title">To Do List</h1>
           </header>
       )

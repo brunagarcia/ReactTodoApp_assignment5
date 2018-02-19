@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 //Database
 
@@ -26,6 +27,9 @@ const todosList = [
 
 
 const doneList = []
+
+
+const completeList = []
 
 
 ReactDOM.render(

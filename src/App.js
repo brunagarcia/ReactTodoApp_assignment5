@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      completeList: props.completeList,
       doneList: props.doneList,
       todosList: props.todosList
     };
@@ -23,7 +24,9 @@ class App extends Component {
       key: new Date().getTime()
     };
     this.setState({
-      todosList: this.state.todosList.concat(newTodoTemp)
+      todosList: this.state.todosList.concat(newTodoTemp),
+      newTodoTemp
+
     });
   };
 
@@ -38,37 +41,28 @@ class App extends Component {
     })
   }
 
-      //   this.setState({
-      //     doneList: this.state.doneList.concat(todo),
-
-      //   })
-      // } 
-
-
-
   // Function to clean the todo list. 
   //   check if the complete state are true, if yes, when click the button change to false.
   clearTodoFunc = () => {
     let result = this.state.todosList.filter(todo => todo.complete === true);
     let rest = this.state.todosList.filter(todo => todo.complete === false);
     this.setState({ 
+      completeList: this.state.todosList,
       doneList: this.state.doneList.concat(result),
       todosList: rest
     });
      
   }
-
-
   
   render() {
     return (
-      <div className="App">
+    <div>
         <NavHeader />
         <AddTodo pushTodo={this.pushTodo} />
         <ListTodos todosList={this.state.todosList} 
           clearTodoFunc={this.clearTodoFunc} 
           markDone={this.markDone}/>
-      </div>
+    </div>
     );
   }
 }
