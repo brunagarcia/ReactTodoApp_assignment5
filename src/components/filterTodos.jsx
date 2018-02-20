@@ -1,6 +1,3 @@
-import React, { Component } from "react";
-import SingleTodo from "./SingleTodo";
-
 //Component List
 export default class ListTodos extends Component {
 
@@ -14,7 +11,7 @@ export default class ListTodos extends Component {
       })
 
     return (
-        <div className="container" id="contentList">
+        <div className="container content">
             <ul className="list">{listJSX}</ul>
             <button className="btn btn-danger" onClick={() => {
                 this.props.clearTodoFunc();

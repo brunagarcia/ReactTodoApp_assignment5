@@ -29,6 +29,11 @@
   to { transform: rotate(360deg); }
 }
 
+#contentList{
+  margin: 2em 1em 2em 2^^Tem;
+  padding: 0;
+}
+
 .addTask {
   margin: 2% 2%;
 }
@@ -39,11 +44,8 @@ input[type=checkbox]:checked + label {
 }
 
 ul{
+  margin: 2% 0%;
   list-style-type: none;
-}
-
-.content{
-  padding: 0;
 }
 
 .input{

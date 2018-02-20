@@ -16,53 +16,60 @@ class App extends Component {
     };
   }
 
-  // Function should be in the parent
-  pushTodo = text => {
-    let newTodoTemp = {
-      title: text,
-      complete: false,
-      key: new Date().getTime()
-    };
-    this.setState({
-      todosList: this.state.todosList.concat(newTodoTemp),
-      newTodoTemp
+  //Function to add task to the array.
+  //It will get the user input as parameter and assign to title on newTodo.
+  //and after re define todosList (main data).
+  pushTodo = (e) => {
+    e.preventDefault();
+    if (e.target.userInput.value !== "") {
+      let newTodo = {
+        title: e.target.userInput.value,
+        complete: false,
+        key: new Date().getTime()
+      };
+      this.setState({
+        todosList: this.state.todosList.concat(newTodo)
+      })
+    }
+    e.target.userInput.value = ""
+  };
 
+  //Function to check task done or to be complete.
+  //It will change the attribute complete of the object, on base of checking the check box.
+  markDone = key => {
+    this.state.todosList.forEach(todo => {
+      if (todo.key === key) {
+        todo.complete = !todo.complete;
+      }
+    });
+    this.setState({
+      todosList: this.state.todosList
     });
   };
 
-  markDone = key => {
-    this.state.todosList.forEach((todo)=>{
-      if (todo.key === key){
-        todo.complete = !todo.complete
-      }
-    })
-    this.setState({
-      todosList: this.state.todosList
-    })
-  }
-
-  // Function to clean the todo list. 
-  //   check if the complete state are true, if yes, when click the button change to false.
+  // Function to clean the todo list.
+  // check if the complete state are true, if yes, when click the button change to false.
   clearTodoFunc = () => {
     let result = this.state.todosList.filter(todo => todo.complete === true);
     let rest = this.state.todosList.filter(todo => todo.complete === false);
-    this.setState({ 
+    this.setState({
       completeList: this.state.todosList,
       doneList: this.state.doneList.concat(result),
       todosList: rest
     });
-     
-  }
-  
+  };
+
   render() {
     return (
-    <div>
+      <div>
         <NavHeader />
         <AddTodo pushTodo={this.pushTodo} />
-        <ListTodos todosList={this.state.todosList} 
-          clearTodoFunc={this.clearTodoFunc} 
-          markDone={this.markDone}/>
-    </div>
+        <ListTodos
+          todosList={this.state.todosList}
+          clearTodoFunc={this.clearTodoFunc}
+          markDone={this.markDone}
+        />
+      </div>
     );
   }
 }

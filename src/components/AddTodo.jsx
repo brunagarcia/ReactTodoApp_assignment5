@@ -1,42 +1,25 @@
 import React, { Component } from "react";
 
 export default class AddTodo extends Component{
-  constructor(){
-    super()
-
-    this.state = {
-      newTodo: ""
-    }
-  }
-
-  //function handling the input.
-  todoHandler = (event) => {
-    this.setState({
-      newTodo: event.target.value
-
-    })
-  }
-  
-  //function to clear not working
-  // clearTextInput = () => {
-  //   this.setState({
-  //     newTodo: ''
-  //   })
-  // }
 
 
   render(){
 
-    return <form className="input form-inline align-self-center">
-        <input type="text" className="form-inline" onKeyUp={event => {
-            this.todoHandler(event)}} onClick={this.clearTextInput}
-           placeholder="Type your task here:" />
+    return( 
+      <form onSubmit={(e) => {this.props.pushTodo(e)}} 
+          className="input form-inline align-self-center">
 
-        <button type="button" className="btn btn-light form-inline" onClick={() => {
-            this.props.pushTodo(this.state.newTodo);
-          }}>
-          +
-        </button>
-      </form>;
+          <input 
+              type="text" 
+              className="form-inline" 
+              name="userInput"
+              placeholder="Type your task here:" />
+
+          <button type="submit" className="btn btn-light form-inline">
+            <i className="far fa-hand-pointer" />
+          </button>
+
+      </form>
+    )
   }
 }
