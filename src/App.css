@@ -30,7 +30,7 @@
 }
 
 #contentList{
-  margin: 2em 1em 2em 2^^Tem;
+  margin: 2em 1em 2em 2em;
   padding: 0;
 }
 
@@ -41,6 +41,11 @@
 input[type=checkbox]:checked + label {
   text-decoration: line-through;
   text-decoration-color: maroon;
+  color: grey
+}
+
+label{
+  margin-left: 0.5em;
 }
 
 ul{
@@ -75,5 +80,7 @@ ul{
 }
 
 header.jumbotron {
+  border-radius: 0;
   margin-bottom: 0em;
+  background-color: lightgrey;
 }

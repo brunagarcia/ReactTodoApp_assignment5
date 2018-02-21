@@ -1,24 +1,22 @@
+import React, { Component } from "react";
 //Component List
 export default class ListTodos extends Component {
 
     render(){
-      const todosList = this.props.todosList;
-      let listJSX = todosList.map((todo, i) => {
-        // return <li>{todo.title}</li>
-        return <SingleTodo todo={todo}  
-        markDone={this.props.markDone} />;
-
-      })
 
     return (
-        <div className="container content">
-            <ul className="list">{listJSX}</ul>
-            <button className="btn btn-danger" onClick={() => {
-                this.props.clearTodoFunc();
-              }}>
-              Clear Tasks
-            </button>
-          </div>
+        <div>
+          <select 
+            className="custom-select" 
+            onChange={(e) => 
+              this.props.updateFilter(e.target.value)
+              }>
+            <option selected>Select your tasks here</option>
+            <option value="All">All</option>
+            <option value="Complete">Complete</option>
+            <option value="Incomplete">Incomplete</option>
+          </select>   
+        </div>
     )
   }
 }

@@ -7,9 +7,10 @@ export default class ListTodos extends Component {
     render(){
       const todosList = this.props.todosList;
       let listJSX = todosList.map((todo, i) => {
-        // return <li>{todo.title}</li>
-        return <SingleTodo todo={todo}  
-        markDone={this.props.markDone} />;
+        if(this.props.filter === 'Completed') return todo.complete
+        else if(this.props.filter === 'Incomplete') return !todo.complete
+        else return <SingleTodo todo={todo}  
+        markDone={this.props.markDone}/>;
 
       })
 

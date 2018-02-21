@@ -7,6 +7,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 //Database
 
+//You can add category as well to list todos.
 const todosList = [
   {
     title: "Groceries",
@@ -26,10 +27,10 @@ const todosList = [
 ];
 
 
-const doneList = []
+const doneList = [];
 
 
-const completeList = []
+const completeList = [];
 
 
 ReactDOM.render(

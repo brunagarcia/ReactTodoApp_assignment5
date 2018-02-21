@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavHeader from './components/NavHeader';
 import ListTodos from './components/ListTodos';
 import AddTodo from './components/AddTodo';
+import FilterTodos from './components/FilterTodos';
 import './App.css';
 
 //Parent Component!
@@ -12,7 +13,8 @@ class App extends Component {
     this.state = {
       completeList: props.completeList,
       doneList: props.doneList,
-      todosList: props.todosList
+      todosList: props.todosList,
+      filter: "all"
     };
   }
 
@@ -59,12 +61,21 @@ class App extends Component {
     });
   };
 
+  updateFilter = (filter) => {
+    this.setState({
+      filter
+    })
+
+  }
+
   render() {
     return (
       <div>
         <NavHeader />
+        <FilterTodos updateFilter={this.updateFilter} />
         <AddTodo pushTodo={this.pushTodo} />
         <ListTodos
+          filter={this.state.todosList.complete}
           todosList={this.state.todosList}
           clearTodoFunc={this.clearTodoFunc}
           markDone={this.markDone}
