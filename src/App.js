@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NavHeader from './components/NavHeader';
 import ListTodos from './components/ListTodos';
 import AddTodo from './components/AddTodo';
-import FilterTodos from './components/FilterTodos';
+// import FilterTodos from './components/FilterTodos';
 import './App.css';
 
 //Parent Component!
@@ -14,8 +14,25 @@ class App extends Component {
       completeList: props.completeList,
       doneList: props.doneList,
       todosList: props.todosList,
-      filter: "all"
+      // filter: "all"
     };
+  }
+
+  //Mounting just occurs one time.
+  componentWillMount() {
+    let todosList = JSON.parse(localStorage.getItem("TODOS"))
+    // let filter = JSON.parse(localStorage.getItem("FILTER"))
+
+    if(!todosList) todosList = this.props.todosList
+    // if(!filter) filter = filter.ALL
+    this.setState({
+
+    })
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("TODOS", JSON.stringify(this.state.todosList))
+    // localStorage.setItem("FILTER", JSON.stringify(this.state.filter))
   }
 
   //Function to add task to the array.
@@ -61,18 +78,20 @@ class App extends Component {
     });
   };
 
-  updateFilter = (filter) => {
-    this.setState({
-      filter
-    })
+  // componentDidUpdate()
 
-  }
+  // updateFilter = (filter) => {
+  //   this.setState({
+  //     filter
+  //   })
+
+  // }
 
   render() {
     return (
       <div>
         <NavHeader />
-        <FilterTodos updateFilter={this.updateFilter} />
+        {/* <FilterTodos updateFilter={this.updateFilter} /> */}
         <AddTodo pushTodo={this.pushTodo} />
         <ListTodos
           filter={this.state.todosList.complete}
