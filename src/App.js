@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NavHeader from './components/NavHeader';
 import ListTodos from './components/ListTodos';
 import AddTodo from './components/AddTodo';
-// import FilterTodos from './components/FilterTodos';
+import FilterTodos from './components/FilterTodos';
 import './App.css';
 
 //Parent Component!
@@ -14,7 +14,7 @@ class App extends Component {
       completeList: props.completeList,
       doneList: props.doneList,
       todosList: props.todosList,
-      // filter: "all"
+      filter: "ALL"
     };
   }
 
@@ -28,11 +28,6 @@ class App extends Component {
     this.setState({
 
     })
-  }
-
-  componentDidUpdate() {
-    localStorage.setItem("TODOS", JSON.stringify(this.state.todosList))
-    // localStorage.setItem("FILTER", JSON.stringify(this.state.filter))
   }
 
   //Function to add task to the array.
@@ -78,23 +73,21 @@ class App extends Component {
     });
   };
 
-  // componentDidUpdate()
+  updateFilter = (filter) => {
+    this.setState({
+      filter: filter.target.value
+    })
 
-  // updateFilter = (filter) => {
-  //   this.setState({
-  //     filter
-  //   })
-
-  // }
+  }
 
   render() {
     return (
-      <div>
+      <div className = "fullContainer justify-content-center">
         <NavHeader />
-        {/* <FilterTodos updateFilter={this.updateFilter} /> */}
+        <FilterTodos updateFilter={this.updateFilter} />
         <AddTodo pushTodo={this.pushTodo} />
         <ListTodos
-          filter={this.state.todosList.complete}
+          filter={this.state.filter}
           todosList={this.state.todosList}
           clearTodoFunc={this.clearTodoFunc}
           markDone={this.markDone}

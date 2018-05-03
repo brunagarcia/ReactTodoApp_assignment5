@@ -84,3 +84,8 @@ header.jumbotron {
   margin-bottom: 0em;
   background-color: lightgrey;
 }
+
+.fullContainer{
+  align-content: center;
+  width: 60%;
+}
